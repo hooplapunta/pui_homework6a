@@ -82,7 +82,8 @@ function updateAmount (event) {
     ]
 
 
-    var totalSizes = []
+    var totalSizes = [];
+    var totalCost = 0;
     
     while (totalDonuts > 0) {
         for (size of sizes) {
@@ -90,9 +91,13 @@ function updateAmount (event) {
                 console.log("remove donuts", size.size);
                 totalDonuts -= size.size;
                 totalSizes.push(size);
+                totalCost += size.cost;
+                break;
             }
         }
     }
+    $("#donutCost").html("$" + totalCost.toFixed(2))
+
 
     var finalUnits = "";
     var totalUnits =  _.countBy(totalSizes, "unit");
@@ -100,5 +105,4 @@ function updateAmount (event) {
         finalUnits +=  totalUnits[key] +" " + key +"<br>"
     }
     $("#donutUnits").html(finalUnits)
-
 }
