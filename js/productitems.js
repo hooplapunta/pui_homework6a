@@ -59,5 +59,46 @@ $(".down-button").on("click", function (event) {
 });
 
 function updateAmount (event) {
-    console.log($(".menuItem").find("input").toArray().reduce((a, b) => a + parseInt(b.val()), 0))
+    var totalDonuts = $(".menuItem").find("input").toArray().reduce((a, b) => a + parseInt(b.value), 0)
+    $("#donutCount").html(totalDonuts)
+    console.log("totalDonuts", totalDonuts)
+
+    var sizes = [
+        {
+            size: 12,
+            unit: "Box of 1 Dozen",
+            cost: 19.99
+        },
+        {
+            size: 6,
+            unit: "Box of 1/2 Dozen",
+            cost: 10.99
+        },
+        {
+            size: 1,
+            unit: "donuts in bag",
+            cost: 1.99
+        }
+    ]
+
+
+    var totalSizes = []
+    
+    while (totalDonuts > 0) {
+        for (size of sizes) {
+            if (size.size <= totalDonuts) {
+                console.log("remove donuts", size.size);
+                totalDonuts -= size.size;
+                totalSizes.push(size);
+            }
+        }
+    }
+
+    var finalUnits = "";
+    var totalUnits =  _.countBy(totalSizes, "unit");
+    for (key in totalUnits) {
+        finalUnits +=  totalUnits[key] +" " + key +"<br>"
+    }
+    $("#donutUnits").html(finalUnits)
+
 }

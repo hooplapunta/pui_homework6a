@@ -14,6 +14,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 
 <body>
@@ -145,8 +146,8 @@
 
 				<select name="dough" id="dough">
 					<option value="classic">Classic Dough</option>
-					<option value="sourdough">Local Sourdough</option>
-					<option value="glutenfree">Gluten-Free</option>
+					<option value="sourdough">Local Sourdough (+$0.50/donut)</option>
+					<option value="glutenfree">Gluten-Free (+$0.50/donut)</option>
 				</select>
 
 				<br>
@@ -156,10 +157,11 @@
 			<div class="addToCart">
 				<button type="button" class="addToCartButton">
 					<h3>
-						Box of 1/2 Dozen (6 Donuts)
+						<span id="donutUnits">Pick some Donuts to<br></span>
+						(<span id="donutCount">0</span> Donuts)
 					</h3>
 					<h2>
-						Add $10.99 to Cart
+						Add <span id="donutCount"></span> to Cart
 					</h2>
 				</button>
 			</div>
