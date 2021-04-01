@@ -1,3 +1,5 @@
+var toAddToCart = 0;
+
 $(".menuItem").find("button").hide();
 
 $(".menuItem").on("mouseover", function (event) {
@@ -97,7 +99,7 @@ function updateAmount (event) {
         }
     }
     $("#donutCost").html("$" + totalCost.toFixed(2))
-
+    toAddToCart = totalSizes.length;
 
     var finalUnits = "";
     var totalUnits =  _.countBy(totalSizes, "unit");
@@ -106,3 +108,7 @@ function updateAmount (event) {
     }
     $("#donutUnits").html(finalUnits)
 }
+
+$(".addToCartButton").on("click", function (event) {
+    $("#cartCount").html(parseInt($("#cartCount").html()) + toAddToCart);
+});
